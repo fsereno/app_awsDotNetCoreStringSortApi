@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Interfaces;
 using Models;
 
@@ -9,6 +7,7 @@ namespace Utils
 {
     public class StringSortUtil : IStringSortUtil
     {
+        /// <inheritdoc/>
         public string Sort(string commaSeperatedString)
         {
             var itemsToSort = GetSortItems(commaSeperatedString);
@@ -18,6 +17,7 @@ namespace Utils
             return result;
         }
 
+        /// <inheritdoc/>
         public List<SortItem> GetSortItems(string commaSeperatedString)
         {
             var itemsToSort = new List<SortItem>();
@@ -36,15 +36,16 @@ namespace Utils
             return itemsToSort;
         }
 
-        public string Join(List<SortItem> sortedCharacters)
+        /// <inheritdoc/>
+        public string Join(List<SortItem> sortedItems)
         {
             var result = string.Empty;
 
-            if (sortedCharacters == null || sortedCharacters?.Count == 0) {
+            if (sortedItems == null || sortedItems?.Count == 0) {
                 return result;
             }
 
-            foreach (var item in sortedCharacters)
+            foreach (var item in sortedItems)
             {
                 if (!String.IsNullOrEmpty(result))
                 {
@@ -58,6 +59,10 @@ namespace Utils
             return result;
         }
 
+        /// <summary>
+        /// Calls Sort on collection, passing in IComparer for sorting logic
+        /// </summary>
+        /// <param name="itemsToSort">List of SortItems to sort</param>
         private void Sort(List<SortItem> itemsToSort)
         {
             itemsToSort?.Sort(new SortItem.NaturalSorter());
