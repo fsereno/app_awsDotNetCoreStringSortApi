@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using Interfaces;
 using Models;
 
@@ -7,19 +8,33 @@ namespace Utils
 {
     public class StringSortUtil : IStringSortUtil
     {
+        private readonly ILogger<StringSortUtil> _logger;
+
+        public StringSortUtil(ILogger<StringSortUtil> logger)
+        {
+            _logger = logger;
+        }
+
         /// <inheritdoc/>
         public string Sort(string commaSeperatedString)
         {
+            _logger.LogInformation("Starting Sort process");
+
             var itemsToSort = GetSortItems(commaSeperatedString);
             Sort(itemsToSort);
 
             var result = Join(itemsToSort);
+
+            _logger.LogInformation("Finished Sort process");
+
             return result;
         }
 
         /// <inheritdoc/>
         public List<SortItem> GetSortItems(string commaSeperatedString)
         {
+            _logger.LogWarning("Started splitting items");
+
             var itemsToSort = new List<SortItem>();
             if (String.IsNullOrEmpty(commaSeperatedString))
             {
@@ -33,12 +48,16 @@ namespace Utils
                itemsToSort.Add( new SortItem() { Value = characterGroup.Trim() });
             }
 
+            _logger.LogWarning("Finished splitting items");
+
             return itemsToSort;
         }
 
         /// <inheritdoc/>
         public string Join(List<SortItem> sortedItems)
         {
+            _logger.LogInformation("Started Join process of sorted items");
+
             var result = string.Empty;
 
             if (sortedItems == null || sortedItems?.Count == 0) {
@@ -56,6 +75,9 @@ namespace Utils
                     result = $"{item.Value}";
                 }
             }
+
+            _logger.LogInformation("Finished Join process of sorted items");
+
             return result;
         }
 
@@ -65,6 +87,7 @@ namespace Utils
         /// <param name="itemsToSort">List of SortItems to sort</param>
         private void Sort(List<SortItem> itemsToSort)
         {
+            _logger.LogInformation("Sort the items");
             itemsToSort?.Sort(new SortItem.NaturalSorter());
         }
     }

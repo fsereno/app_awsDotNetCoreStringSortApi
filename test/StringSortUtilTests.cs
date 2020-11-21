@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using Xunit;
 using Interfaces;
 using Utils;
@@ -11,10 +11,12 @@ namespace aws.Tests
 {
     public class StringSortUtilTests
     {
-        private IStringSortUtil _sut { get; set; }
+        private readonly IStringSortUtil _sut;
+        private readonly Mock<ILogger<StringSortUtil>> _logger;
         public StringSortUtilTests()
         {
-            _sut = new StringSortUtil();
+            _logger = new Mock<ILogger<StringSortUtil>>();
+            _sut = new StringSortUtil(_logger.Object);
         }
 
         [Fact]
