@@ -130,6 +130,21 @@ namespace aws.Tests
             Assert.Equal("document_A1.txt,document_A1A.txt,document_A1B.txt,document_A2A.txt,document_A10A.txt", result);
         }
 
+
+        [Fact]
+        public void Test_Sort_Verify_Logging_Occurs()
+        {
+            var commaSeperatedString = "B,A,C";
+            var result = _sut.Sort(commaSeperatedString);
+            VerifyLogger(LogLevel.Information, "Starting Sort process");
+            VerifyLogger(LogLevel.Information, "Started splitting items");
+            VerifyLogger(LogLevel.Information, "Finished splitting items");
+            VerifyLogger(LogLevel.Information, "Sort the items");
+            VerifyLogger(LogLevel.Information, "Started Join process of sorted items");
+            VerifyLogger(LogLevel.Information, "Finished Join process of sorted items");
+            VerifyLogger(LogLevel.Information, "Finished Sort process");
+        }
+
         [Fact]
         public void Test_Join_Should_Return_String_Of_Single_Item()
         {

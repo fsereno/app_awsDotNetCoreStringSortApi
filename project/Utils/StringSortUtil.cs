@@ -33,7 +33,7 @@ namespace Utils
         /// <inheritdoc/>
         public List<SortItem> GetSortItems(string commaSeperatedString)
         {
-            _logger.LogWarning("Started splitting items");
+            _logger.LogInformation("Started splitting items");
 
             var itemsToSort = new List<SortItem>();
             if (String.IsNullOrEmpty(commaSeperatedString))
@@ -48,7 +48,7 @@ namespace Utils
                itemsToSort.Add( new SortItem() { Value = characterGroup.Trim() });
             }
 
-            _logger.LogWarning("Finished splitting items");
+            _logger.LogInformation("Finished splitting items");
 
             return itemsToSort;
         }
