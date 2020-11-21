@@ -165,5 +165,16 @@ namespace aws.Tests
             var result = _sut.Join(null);
             Assert.Equal(string.Empty, result);
         }
+
+        private void VerifyLogger(LogLevel expectedLogLevel, string expectedMessage = "")
+        {
+            _logger.Verify(
+                x => x.Log(
+                    It.Is<LogLevel>(l => l == expectedLogLevel),
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => String.IsNullOrEmpty(expectedMessage) ? true : v.ToString() == expectedMessage),
+                    It.IsAny<Exception>(),
+                    It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)));
+        }
     }
 }
