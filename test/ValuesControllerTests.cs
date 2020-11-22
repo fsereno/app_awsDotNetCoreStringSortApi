@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using Amazon.Lambda.Core;
 using Amazon.Lambda.TestUtilities;
 using Amazon.Lambda.APIGatewayEvents;
 using Newtonsoft.Json;
-using aws;
 
 namespace aws.Tests
 {
@@ -25,7 +20,13 @@ namespace aws.Tests
 
             Assert.Equal(200, response.StatusCode);
             Assert.Equal("{\"result\":\"A,B,C\"}", response.Body);
+
             Assert.True(response.MultiValueHeaders.ContainsKey("Content-Type"));
+            Assert.True(response.MultiValueHeaders.ContainsKey("Access-Control-Allow-Headers"));
+            Assert.True(response.MultiValueHeaders.ContainsKey("Access-Control-Allow-Origin"));
+            Assert.True(response.MultiValueHeaders.ContainsKey("Access-Control-Allow-Methods"));
+            Assert.Equal("Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token", response.MultiValueHeaders["Access-Control-Allow-Headers"][0]);
+            Assert.Equal("*", response.MultiValueHeaders["Access-Control-Allow-Origin"][0]);
             Assert.Equal("application/json; charset=utf-8", response.MultiValueHeaders["Content-Type"][0]);
         }
     }
