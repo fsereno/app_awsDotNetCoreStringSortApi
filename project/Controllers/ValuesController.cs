@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Interfaces;
-using Models;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Interfaces;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Models;
 
-namespace aws.Controllers
+namespace FabioSereno.App_awsDotNetCoreStringSortApi.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : ControllerBase

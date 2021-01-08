@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Models
+namespace FabioSereno.App_awsDotNetCoreStringSortApi.Models
 {
     public class SortItem
     {

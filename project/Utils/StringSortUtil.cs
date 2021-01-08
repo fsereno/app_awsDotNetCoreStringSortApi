@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-using Interfaces;
-using Models;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Interfaces;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Models;
 
-namespace Utils
+namespace FabioSereno.App_awsDotNetCoreStringSortApi.Utils
 {
     public class StringSortUtil : IStringSortUtil
     {

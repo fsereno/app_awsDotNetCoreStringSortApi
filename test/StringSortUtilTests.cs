@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
-using Interfaces;
-using Utils;
-using Models;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Interfaces;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Utils;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Models;
 
-namespace aws.Tests
+namespace FabioSereno.App_awsDotNetCoreStringSortApi.Tests
 {
     public class StringSortUtilTests
     {

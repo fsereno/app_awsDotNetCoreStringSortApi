@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Models;
+using FabioSereno.App_awsDotNetCoreStringSortApi.Models;
 
-namespace Interfaces
+namespace FabioSereno.App_awsDotNetCoreStringSortApi.Interfaces
 {
    public interface IStringSortUtil
    {
